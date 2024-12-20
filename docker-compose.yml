@@ -4,3 +4,4 @@ services:
     image: "vinayak30/portfolio:latest"
     ports:
         - "3000:3000"
+        - "5000:5000"
