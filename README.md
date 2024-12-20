@@ -1,70 +1,136 @@
-# Getting Started with Create React App
+# 🚀 Personal Portfolio Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📝 Project Overview
 
-## Available Scripts
+This is a personal portfolio website built using React.js, designed to showcase my projects, skills, and professional experience. The project is set up with a robust CI/CD pipeline using Jenkins, Docker, and GitHub for seamless deployment and continuous integration.
 
-In the project directory, you can run:
+## 🛠 Technologies Used
 
-### `npm start`
+- **Frontend**: React.js
+- **Containerization**: Docker
+- **CI/CD**: Jenkins
+- **Version Control**: GitHub
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🗂 Project Structure
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+portfolio-website/
+│
+├── src/                # 💻 React source code
+├── public/             # 🖼 Public assets
+├── Dockerfile          # 🐳 Docker configuration
+├── docker-compose.yml  # 🚢 Docker Compose configuration
+├── Jenkinsfile         # 🤖 Jenkins pipeline configuration
+└── README.md           # 📖 Project documentation
+```
 
-### `npm test`
+## 🎯 Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Before you begin, ensure you have the following installed:
+- Node.js (v14 or later)
+- npm or Yarn
+- Docker
+- Docker Compose
 
-### `npm run build`
+## 🛠 Local Development Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. Clone the Repository
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/vbs30/Portfolio-Website.git
+cd Portfolio-Website
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. Install Dependencies
 
-### `npm run eject`
+```bash
+npm install
+# or
+yarn install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 3. Run Locally
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+# or
+yarn start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The application will be available at `http://localhost:3000`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🐳 Docker Deployment
 
-## Learn More
+### Building Docker Image
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+docker build -t portfolio-website .
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Running with Docker Compose
 
-### Code Splitting
+```bash
+docker-compose up -d
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🔄 CI/CD Pipeline Configuration
 
-### Analyzing the Bundle Size
+### Jenkins Pipeline Overview
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The project uses a master-agent Jenkins configuration for automated deployment:
 
-### Making a Progressive Web App
+1. **Source Code Management**: 
+   - Repository: GitHub
+   - URL: https://github.com/vbs30/Portfolio-Website.git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+2. **Automated Triggers**:
+   - Automatic deployment triggered on:
+     - Push to main branch
+     - Pull request merges
 
-### Advanced Configuration
+### Jenkins Pipeline Stages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The `Jenkinsfile` defines the following typical stages:
+- Checkout
+- Install Dependencies
+- Build
+- Test
+- Docker Build
+- Deploy
 
-### Deployment
+## 🚀 Deployment Process
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Code changes are pushed to GitHub
+2. Jenkins automatically detects the changes
+3. Pipeline runs tests and builds the application
+4. Docker image is created
+5. Application is deployed to the target environment
 
-### `npm run build` fails to minify
+## 🎨 Customization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To customize the portfolio:
+1. Update content in `src/` directory
+2. Modify components as needed
+3. Add your personal projects, skills, and information
+
+## 🛠 Troubleshooting
+
+- Ensure all dependencies are installed correctly
+- Check Docker and Jenkins configurations
+- Verify network and port settings
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📞 Contact
+
+Your Name - vbs02002@gmail.com
+
+
+## 💼 Project Link
+Project Link: http://13.201.53.123:3000/
