@@ -78,7 +78,7 @@ export const Banner = () => {
               <a href="https://drive.google.com/file/d/1JUoYh6AFQz1sduU-DRrtPc_FUhbyL2uM/view"><img src={navIcon5} alt="" /></a>
             </div>
           </Col>
-          <Col xs={12} md={6} xl={5} className="center-img mt-5">
+          <Col xs={12} md={6} xl={5} className="center-img">
             <img src={headerImg} alt="Header Img" class="banner-img" />
           </Col>
         </Row>
