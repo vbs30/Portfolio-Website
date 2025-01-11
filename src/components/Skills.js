@@ -11,7 +11,7 @@ const SkillCategory = ({ title, skills }) => (
     <h3 className="category-title mb-4">{title}</h3>
     <Row>
       {skills.map((skill, index) => (
-        <Col key={index} xs={4} sm={3} md={2} lg={2} className="mb-3">
+        <Col key={index} xs={4} sm={3} md={2} lg={1} className="mb-3">
           <Card className="skills-card shadow-lg">
             <Card.Body className="d-flex flex-column align-items-center">
               <div className="skill-icon mb-3">{skill.icon}</div>
