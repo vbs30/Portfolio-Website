@@ -75,7 +75,7 @@ export const Banner = () => {
               <a href="https://github.com/vbs30"><img src={navIcon2} alt="" /></a>
               <a href="https://www.instagram.com/vbs_30/"><img src={navIcon3} alt="" /></a>
               <a href="https://leetcode.com/u/VBS_30/"><img src={navIcon4} alt="" /></a>
-              <a href="https://drive.google.com/file/d/1JUoYh6AFQz1sduU-DRrtPc_FUhbyL2uM/view"><img src={navIcon5} alt="" /></a>
+              <a href="https://drive.google.com/file/d/1chfrBG8B0KPtZ_9Y4pQfCckw7jYczwfV/view?usp=sharing"><img src={navIcon5} alt="" /></a>
             </div>
           </Col>
           <Col xs={12} md={6} xl={5} className="center-img">

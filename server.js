@@ -1,66 +1,75 @@
-const express = require("express");
-const router = express.Router();
-const cors = require("cors");
-const nodemailer = require("nodemailer");
-const dotenv = require("dotenv");
-
-// Load environment variables
+import express from 'express';
+import cors from 'cors';
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv'
 dotenv.config();
 
-// Server setup
 const app = express();
+const PORT = process.env.PORT || 5000;
+
+// Middleware
 app.use(cors());
 app.use(express.json());
-app.use("/", router);
 
-app.listen(5000, () => console.log("Server Running"));
-
-// Validate email configuration
-if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-  console.error("Email configuration is missing in .env file!");
-  process.exit(1);
-}
-
-const contactEmail = nodemailer.createTransport({
-  service: "gmail",
+// Create a transporter for nodemailer
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com", // Replace with your SMTP host
+  port: 587,
+  secure: false, // true for 465, false for other ports
   auth: {
-    user: process.env.EMAIL_USER,
+    user: process.env.EMAIL_USER, // Use environment variables
     pass: process.env.EMAIL_PASS,
   },
 });
 
-contactEmail.verify((error) => {
-  if (error) {
-    console.error("Error in email configuration:", error);
-  } else {
-    console.log("Ready to Send Emails");
+// API endpoint for contact form
+app.post('/api/contact', async (req, res) => {
+  const { firstName, lastName, email, phone, message } = req.body;
+
+  // Validate required fields
+  if (!firstName || !email || !message) {
+    return res.status(400).json({
+      success: false,
+      message: 'Please provide name, email and message'
+    });
+  }
+
+  try {
+    // Format the email content using form details
+    const emailContent = `
+      <h2>New Query from Vinayak's portfolio</h2>
+      <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
+      <p><strong>Message:</strong> ${message}</p>
+    `;
+
+    // Send the email
+    const info = await transporter.sendMail({
+      from: email,
+      to: "vbs02002@gmail.com", // Replace with your email address
+      subject: "New Query from Contact Form",
+      text: `New message from ${firstName} ${lastName}. Email: ${email}. `,
+      html: emailContent,
+    });
+
+    console.log("Message sent:", info.messageId);
+
+    // Return success response
+    res.status(200).json({
+      success: true,
+      message: 'Message sent successfully'
+    });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error sending email. Please try again later.'
+    });
   }
 });
 
-router.post("/contact", (req, res) => {
-  const { firstName, lastName, email, message, phone } = req.body;
-
-  if (!firstName || !lastName || !email || !message || !phone) {
-    return res.status(400).json({ code: 400, status: "Missing fields" });
-  }
-
-  const name = `${firstName} ${lastName}`;
-  const mail = {
-    from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
-    subject: "Contact Form Submission - Portfolio",
-    html: `<p><strong>Name:</strong> ${name}</p>
-           <p><strong>Email:</strong> ${email}</p>
-           <p><strong>Phone:</strong> ${phone}</p>
-           <p><strong>Message:</strong> ${message}</p>`,
-  };
-
-  contactEmail.sendMail(mail, (error) => {
-    if (error) {
-      console.error("Email sending error:", error);
-      res.status(500).json({ code: 500, status: "Message sending failed" });
-    } else {
-      res.status(200).json({ code: 200, status: "Message Sent Successfully" });
-    }
-  });
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

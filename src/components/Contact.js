@@ -24,22 +24,36 @@ export const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setButtonText("Sending...");
+
     try {
-      const response = await fetch("http://13.201.53.123:5000/contact", {
+      // Send the form data to your backend
+      const response = await fetch("http://localhost:5000/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(formDetails),
       });
-      setButtonText("Send");
+
       const result = await response.json();
+
+      // Update UI based on response
+      setButtonText("Send");
+
       if (response.ok) {
         setFormDetails(formInitialDetails);
         setStatus({ success: true, message: "Message sent successfully" });
       } else {
-        throw new Error(result.status);
+        setStatus({ success: false, message: result.message || "Something went wrong" });
       }
+
     } catch (error) {
-      setStatus({ success: false, message: "Something went wrong, please try again later." });
+      console.error("Error submitting form:", error);
+      setButtonText("Send");
+      setStatus({
+        success: false,
+        message: "Something went wrong, please try again later."
+      });
     }
   };
 
