@@ -555,9 +555,6 @@ h5 {
 }
 
 /************ Projects Css ************/
-/* Add this CSS to your styles file (e.g., App.css or Projects.css) */
-
-/* Projects Section Styling */
 .project {
   padding: 80px 0;
   position: relative;
@@ -691,7 +688,7 @@ h5 {
   .project-content {
     flex-direction: column;
   }
-
+  
   .project-img-container {
     flex: 0 0 100%;
     max-width: 100%;
@@ -703,24 +700,26 @@ h5 {
   .project h2 {
     font-size: 38px;
   }
-
+  
   .project p {
     font-size: 16px;
     width: 90%;
   }
-
+  
   .projects-horizontal {
     gap: 20px;
   }
-
+  
   .project-details h3 {
     font-size: 20px;
   }
-
+  
   .project-details p {
     font-size: 14px;
   }
 }
+
+
 
 /************ Contact Section ************/
 .contact {
